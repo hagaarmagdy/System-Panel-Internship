@@ -11,5 +11,4 @@ const schemas = {
     id: Joi.string().required(),
   },
 };
-console.log("j")
 module.exports = schemas;
