@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const Joi = require("joi");
 const mongoose = require("mongoose");
-const { buffer } = require("stream/consumers");
 
 const productSchema = new mongoose.Schema({
   name: {
@@ -15,10 +14,7 @@ const productSchema = new mongoose.Schema({
     required: true,
     minlength: 3,
   },
-  gellery: {
-    type: String,
-    data: buffer,
-  },
+  gellery: [String],
   content: {
     type: String,
     required: true,
@@ -29,11 +25,7 @@ const productSchema = new mongoose.Schema({
     required: true,
     minlength: 3,
   },
-  tags: [
-    {
-      type: String,
-    },
-  ],
+  tags: [String],
   short_description: {
     type: String,
     minlength: 3,
@@ -54,7 +46,7 @@ const productSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  sku:{
+  sku: {
     type: String,
     required: true,
   },
@@ -62,7 +54,7 @@ const productSchema = new mongoose.Schema({
     type: Number,
     default: 10,
     required: true,
-  }
+  },
 });
 
 const Product = mongoose.model("Product", productSchema);

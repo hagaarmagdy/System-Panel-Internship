@@ -2,9 +2,9 @@ const express = require("express");
 const app = express();
 const Joi = require("joi");
 const mongoose = require('mongoose');
-const products = require("./routes/products");
-const categories = require("./routes/categories")
-const industries = require("./routes/industries")
+const products = require("./src/routes/products");
+const categories = require("./src/routes/categories");
+const industries = require("./src/routes/industries");
 
 
 
