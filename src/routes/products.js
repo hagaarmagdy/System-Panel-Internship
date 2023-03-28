@@ -3,7 +3,16 @@ const router = express.Router();
 const Joi = require("joi");
 const mongoose = require("mongoose");
 const { Product } = require("../models/product");
-
+const multer = require("multer");
+const storage = multer.diskStorage({
+  destination(req, file, cb) {
+    cb(null, "../uploads/");
+  },
+  filename(req, file, cb) {
+    cb(null, file.originalname);
+  },
+});
+const upload = multer({ storage });
 
 router.get("/", async (req, res) => {
   const product = await Product.find();
@@ -17,7 +26,7 @@ router.get("/:id", async (req, res) => {
   res.send(product);
 });
 
-router.post("/", async (req, res) => {
+router.post("/", upload.single("gallery"), async (req, res) => {
   let product = new Product({
     name: req.body.name,
     name_ar: req.body.name_ar,
@@ -47,7 +56,7 @@ router.delete("/:id", async (req, res) => {
   res.send(product);
 });
 
-router.put("/:id", async (req, res) => {
+router.put("/:id", upload.single("gallery"), async (req, res) => {
   const product = await Product.findByIdAndUpdate(
     req.params.id,
     {

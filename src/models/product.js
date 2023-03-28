@@ -14,7 +14,7 @@ const productSchema = new mongoose.Schema({
     required: true,
     minlength: 3,
   },
-  gellery: [String],
+  gallery: [String],
   content: {
     type: String,
     required: true,

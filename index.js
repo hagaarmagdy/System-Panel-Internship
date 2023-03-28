@@ -13,6 +13,7 @@ mongoose.set("strictQuery", false);
 
 
 app.use(express.json());
+app.use("/uploads",express.static("uploads"));
 app.use("/api/products", products);
 app.use("/api/categories", categories);
 app.use("/api/industries", industries);
@@ -22,7 +23,7 @@ app.use("/api/industries", industries);
 
 mongoose.connect("mongodb://localhost/api")
 .then(()=>console.log("connected"))
-.catch(err =>{console.log("error",err)})
+.catch(err =>{console.log("error",err)});
 
 
 const port = process.env.port || 3000;
