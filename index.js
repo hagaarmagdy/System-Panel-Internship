@@ -14,14 +14,14 @@ mongoose.set("strictQuery", false);
 
 app.use(express.json());
 app.use("/uploads",express.static("uploads"));
-app.use("/api/products", products);
-app.use("/api/categories", categories);
-app.use("/api/industries", industries);
+app.use("/system-panel-db/products", products);
+app.use("/system-panel-db/categories", categories);
+app.use("/system-panel-db/industries", industries);
 
 
 
 
-mongoose.connect("mongodb://localhost/api")
+mongoose.connect("mongodb://localhost/system-panel-db")
 .then(()=>console.log("connected"))
 .catch(err =>{console.log("error",err)});
 
