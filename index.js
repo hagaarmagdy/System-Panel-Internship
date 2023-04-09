@@ -7,6 +7,7 @@ const categories = require("./src/routes/categories");
 const industries = require("./src/routes/industries");
 const packages = require("./src/routes/packages");
 const features = require("./src/routes/features");
+const customers = require("./src/routes/customers")
 
 mongoose.set("strictQuery", false);
 
@@ -17,6 +18,8 @@ app.use("/system-panel-db/categories", categories);
 app.use("/system-panel-db/industries", industries);
 app.use("/system-panel-db/packages", packages);
 app.use("/system-panel-db/features", features);
+app.use("/system-panel-db/customers", customers);
+
 
 mongoose
   .connect("mongodb://localhost/system-panel-db")

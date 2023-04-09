@@ -11,12 +11,17 @@ router.get("/", async (req, res) => {
   res.send(category);
 });
 
-router.get("/:id",middleware(schema.categoryList, 'query'), async (req, res) => {
+router.get("/:id", async (req, res) => {
   const category = await Category.findById(req.params.id);
   res.send(category);
 });
 
-router.post("/",middleware(schema.Category,'body'),async (req, res) => {
+router.post("/", async (req, res) => {
+  const { error, value } = schema.validateCategory(req.body);
+  if (error) {
+    console.log("error", error.Category.name);
+    res.status(422).json({  });
+  }
   let category = new Category({
     name: req.body.name,
     name_ar: req.body.name_ar,
